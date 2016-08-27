@@ -23,7 +23,7 @@ public class buttonstate : MonoBehaviour {
 
     public void click()
     {
-        GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/inventorycell");
+        GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/sword");
     }
     public void setButtonImage()
     {

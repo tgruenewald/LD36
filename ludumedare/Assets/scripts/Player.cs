@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	int score = 0;
 	private bool facingRight = true;
 	int inventoryNumber = 1;
+	public int maxInventory = 7;
 
 
 
@@ -82,6 +83,9 @@ public class Player : MonoBehaviour {
 		Button inventorySlot1 = GameObject.Find ("InventoryButton" + inventoryNumber).GetComponent<UnityEngine.UI.Button> ();
 		inventorySlot1.image.sprite  = Resources.Load<Sprite>("Sprites/sword");
 		inventoryNumber++;
+		if (inventoryNumber > maxInventory) {
+			inventoryNumber = 1;
+		}
 	}
 	void Flip()
 	{
