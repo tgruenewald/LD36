@@ -13,12 +13,11 @@ public class Player : MonoBehaviour {
 	public GameObject prey;
 	GameObject energyBar;
 	bool ogreIsAboutToDie = false;
-	bool eventContact = false;
-
 	int score = 0;
 	private bool facingRight = true;
+	int inventoryNumber = 1;
 
-	public Interactions interactions;
+
 
 	IEnumerator yieldConnect()
 	{
@@ -58,19 +57,32 @@ public class Player : MonoBehaviour {
 //		img.fillAmount = 1f;
 //		StartCoroutine(yieldConnect());
 	}
-/*	void OnTriggerEnter2D(Collider2D col)
+	void OnCollisionEnter2D(Collision2D col)
 	{
-		
-	
-		if (col.gameObject.CompareTag("prop"))
-		{
-			interactions.showText ("Prop contact!");
-		}
-
-
-
+//		if (col.gameObject.tag == "prey")
+//		{
+//			//AudioSource.PlayClipAtPoint(prey.audio.clip, transform.position);
+//			prey.GetComponent<AudioSource>().Play();
+//			Destroy(col.gameObject);  
+////			Image img = healthBar.GetComponent<Image>();
+////			img.fillAmount =  img.fillAmount + 0.2f;
+//			energy = energy + energy_step;			
+//			Text energyLevelText = healthBar.GetComponent<Text>();
+//			energyLevelText.text = "" + energy;
+//			Image img = energyBar.GetComponent<Image>();
+//			img.fillAmount = img.fillAmount + .01f * energy_step;
+//
+//
+//
+//
+//		}
 	}
-*/
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		Button inventorySlot1 = GameObject.Find ("InventoryButton" + inventoryNumber).GetComponent<UnityEngine.UI.Button> ();
+		inventorySlot1.image.sprite  = Resources.Load<Sprite>("Sprites/sword");
+		inventoryNumber++;
+	}
 	void Flip()
 	{
 		//Debug.Log("switching...");
@@ -81,9 +93,6 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update(){
-		
-	}
 	void FixedUpdate () {
 //		var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 //		Quaternion rot = Quaternion.LookRotation(transform.position - mousePosition, Vector3.forward);

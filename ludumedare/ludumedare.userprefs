@@ -1,10 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\droplet_stiched\Assets\scripts\droplet.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Player.cs">
     <Files>
-      <File FileName="..\..\droplet_stiched\Assets\scripts\droplet.cs" Line="109" Column="13" />
-      <File FileName="Assets\scripts\Player.cs" Line="44" Column="3" />
-      <File FileName="Assets\HotDog.cs" Line="25" Column="1" />
+      <File FileName="Assets\scripts\HotDog.cs" Line="15" Column="1" />
+      <File FileName="..\..\droplet_stiched\Assets\scripts\droplet.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Player.cs" Line="18" Column="31" />
+      <File FileName="Assets\scripts\Sword.cs" Line="25" Column="3" />
+      <File FileName="Assets\scripts\buttonstate.cs" Line="11" Column="96" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
