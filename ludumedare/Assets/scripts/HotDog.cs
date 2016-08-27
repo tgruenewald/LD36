@@ -24,7 +24,7 @@ public class HotDog : MonoBehaviour {
 		//GameState.currentLevel = "jungle";
 
 		Debug.Log ("Calling combat scene");
-		SceneManager.LoadScene ("combat");
+		SceneManager.LoadScene ("scene2");
 
 
 	}
