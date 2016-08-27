@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
 	public int energy_step = 5;
 	GameObject healthBar;
 	GameObject scoreText;
-	public GameObject brick;
 	GameObject prevBrick;
 	public GameObject prey;
 	GameObject energyBar;
@@ -43,15 +42,14 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		var brickText = GameObject.Find("BrickText");
-		Text t = brickText.GetComponent<Text>();
-		t.text = "" + (max_number_of_walls - Wall.NumberOfWallsLeft());
+
 
 		score = 0;
 		ogreIsAboutToDie = false;
 		healthBar = GameObject.Find("EnergyLevel");
 		Text energyLevelText = healthBar.GetComponent<Text>();
 		energyLevelText.text = "" + energy;
-		Gameover.hide_game_over();
+
 		energyBar = GameObject.Find("EnergyBar");
 		Image img = energyBar.GetComponent<Image>();
 		img.fillAmount = 1f;
@@ -59,23 +57,23 @@ public class Player : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		if (col.gameObject.tag == "prey")
-		{
-			//AudioSource.PlayClipAtPoint(prey.audio.clip, transform.position);
-			prey.GetComponent<AudioSource>().Play();
-			Destroy(col.gameObject);  
-//			Image img = healthBar.GetComponent<Image>();
-//			img.fillAmount =  img.fillAmount + 0.2f;
-			energy = energy + energy_step;			
-			Text energyLevelText = healthBar.GetComponent<Text>();
-			energyLevelText.text = "" + energy;
-			Image img = energyBar.GetComponent<Image>();
-			img.fillAmount = img.fillAmount + .01f * energy_step;
-
-
-
-
-		}
+//		if (col.gameObject.tag == "prey")
+//		{
+//			//AudioSource.PlayClipAtPoint(prey.audio.clip, transform.position);
+//			prey.GetComponent<AudioSource>().Play();
+//			Destroy(col.gameObject);  
+////			Image img = healthBar.GetComponent<Image>();
+////			img.fillAmount =  img.fillAmount + 0.2f;
+//			energy = energy + energy_step;			
+//			Text energyLevelText = healthBar.GetComponent<Text>();
+//			energyLevelText.text = "" + energy;
+//			Image img = energyBar.GetComponent<Image>();
+//			img.fillAmount = img.fillAmount + .01f * energy_step;
+//
+//
+//
+//
+//		}
 	}
 
 	void Flip()
