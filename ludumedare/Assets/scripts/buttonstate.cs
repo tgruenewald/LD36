@@ -23,7 +23,10 @@ public class buttonstate : MonoBehaviour {
 
     public void click()
     {
-        GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/sword");
+		Debug.Log ("you clicked");
+        //GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/sword");
+		UnityEngine.UI.Button button = GetComponent<UnityEngine.UI.Button> ();
+		Debug.Log ("You selected the " + button.tag);
     }
     public void setButtonImage()
     {

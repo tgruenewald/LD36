@@ -80,12 +80,19 @@ public class Player : MonoBehaviour {
 	}
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		Button inventorySlot1 = GameObject.Find ("InventoryButton" + inventoryNumber).GetComponent<UnityEngine.UI.Button> ();
-		inventorySlot1.image.sprite  = Resources.Load<Sprite>("Sprites/sword");
+		var tag = coll.gameObject.tag;
+
+		Button inventorySlot = GameObject.Find ("InventoryButton" + inventoryNumber).GetComponent<UnityEngine.UI.Button> ();
+		inventorySlot.tag = tag;
+		inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
 		inventoryNumber++;
 		if (inventoryNumber > maxInventory) {
 			inventoryNumber = 1;
 		}
+
+		DestroyObject (coll.gameObject);
+
+
 	}
 	void Flip()
 	{
