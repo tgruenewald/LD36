@@ -45,8 +45,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\scripts\BackToScene1.cs" />
      <Compile Include="Assets\scripts\HotDog.cs" />
      <Compile Include="Assets\scripts\Interactions.cs" />
+     <Compile Include="Assets\scripts\InventoryDisplay.cs" />
      <Compile Include="Assets\scripts\Player.cs" />
      <Compile Include="Assets\scripts\Sword.cs" />
      <Compile Include="Assets\scripts\buttonstate.cs" />

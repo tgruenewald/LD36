@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 	public static int max_number_of_walls = 15;
+	public const int MAX_INVENTORY = 7;
 	public float speed = 20f;
 	public int energy = 20;
 	public int energy_step = 5;
@@ -15,9 +16,8 @@ public class Player : MonoBehaviour {
 	bool ogreIsAboutToDie = false;
 	int score = 0;
 	private bool facingRight = true;
-	int inventoryNumber = 1;
-	public int maxInventory = 7;
-
+	static int InventoryNumber = 0;
+	static Button[] InventoryArray = new Button[MAX_INVENTORY];
 
 
 	IEnumerator yieldConnect()
@@ -42,13 +42,29 @@ public class Player : MonoBehaviour {
 			yield return new WaitForSeconds(1);
 		}
 	}
+
+	void Awake() {
+		DontDestroyOnLoad (gameObject);
+	}
 	// Use this for initialization
 	void Start () {
 //		var brickText = GameObject.Find("BrickText");
+		Debug.Log ("Player start:  inventory = " + InventoryNumber);
+		// repopulate the inventory
+		for (int i = 0; i< InventoryNumber; i++) {
+			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
 
+			inventorySlot.tag = InventoryArray[i].tag;
+			inventorySlot.image.sprite = InventoryArray[i].image.sprite;//b.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
+			if (i >= MAX_INVENTORY) {
+				i = 0;
+			}			
+		}
+			
 
 		score = 0;
 		ogreIsAboutToDie = false;
+
 //		healthBar = GameObject.Find("EnergyLevel");
 //
 //		energyLevelText.text = "" + energy;
@@ -82,12 +98,13 @@ public class Player : MonoBehaviour {
 	{
 		var tag = coll.gameObject.tag;
 
-		Button inventorySlot = GameObject.Find ("InventoryButton" + inventoryNumber).GetComponent<UnityEngine.UI.Button> ();
+		Button inventorySlot = GameObject.Find ("InventoryButton" + (InventoryNumber + 1)).GetComponent<UnityEngine.UI.Button> ();
 		inventorySlot.tag = tag;
 		inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
-		inventoryNumber++;
-		if (inventoryNumber > maxInventory) {
-			inventoryNumber = 1;
+		InventoryArray[InventoryNumber] = inventorySlot;
+		InventoryNumber++;
+		if (InventoryNumber >= MAX_INVENTORY) {
+			InventoryNumber = 0;
 		}
 
 		DestroyObject (coll.gameObject);
