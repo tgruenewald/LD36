@@ -30,10 +30,10 @@ public class Interactions : MonoBehaviour {
 	}//if Update
 
 
-	public void showText(string dialoguetext){
+	public void showText(string tag){
 		//Debug.Log ("showing text: " + dialoguetext);
 		textbg.enabled = true;
-		StartCoroutine (animate (dialoguetext));
+		StartCoroutine (animate (textManager(tag)));
 
 	}
 
@@ -54,5 +54,18 @@ public class Interactions : MonoBehaviour {
 		storytext.text = strComplete;
 		printingText = false;
 		inDialogue = true;
+	}
+
+	public string textManager(string tag)
+	{
+		switch(tag)
+		{
+		case "idalia":
+			return "Idalia never shuts up.";
+		case "whale":
+			return "This is a whale of a problem.";
+		default:
+			return "textManager did not find string";
+		}
 	}
 }

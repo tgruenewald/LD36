@@ -15,7 +15,7 @@ public class itemContact : MonoBehaviour {
 		if (Input.GetButtonDown("Jump") && contact && !Interactions.inDialogue)
 		{
 			//Debug.Log ("space pressed");
-			Interactions.showText ("Item contact");
+			Interactions.showText (this.tag);
 		}
 
 

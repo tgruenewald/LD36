@@ -16,7 +16,7 @@ public class eventContact : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		interactions.showText ("Prop contact!");
+		interactions.showText (this.tag);
 
 	}
 
