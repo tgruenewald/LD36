@@ -18,6 +18,8 @@ public class Player : MonoBehaviour {
 	private bool facingRight = true;
 	static int InventoryNumber = 0;
 	static Button[] InventoryArray = new Button[MAX_INVENTORY];
+	static bool created = false;
+	private static Player playerInstance;
 
 
 	IEnumerator yieldConnect()
@@ -45,21 +47,26 @@ public class Player : MonoBehaviour {
 
 	void Awake() {
 		DontDestroyOnLoad (gameObject);
+		if (playerInstance == null) {
+			playerInstance = this;
+		} else {
+			DestroyObject(gameObject);
+		}
 	}
 	// Use this for initialization
 	void Start () {
 //		var brickText = GameObject.Find("BrickText");
 		Debug.Log ("Player start:  inventory = " + InventoryNumber);
 		// repopulate the inventory
-		for (int i = 0; i< InventoryNumber; i++) {
-			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
-
-			inventorySlot.tag = InventoryArray[i].tag;
-			inventorySlot.image.sprite = InventoryArray[i].image.sprite;//b.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
-			if (i >= MAX_INVENTORY) {
-				i = 0;
-			}			
-		}
+//		for (int i = 0; i< InventoryNumber; i++) {
+//			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
+//
+//			inventorySlot.tag = InventoryArray[i].tag;
+//			inventorySlot.image.sprite = InventoryArray[i].image.sprite;//b.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
+//			if (i >= MAX_INVENTORY) {
+//				i = 0;
+//			}			
+//		}
 			
 
 		score = 0;

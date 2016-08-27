@@ -2,11 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\Player.cs">
     <Files>
-      <File FileName="Assets\scripts\HotDog.cs" Line="15" Column="1" />
+      <File FileName="Assets\scripts\HotDog.cs" Line="3" Column="1" />
       <File FileName="..\..\droplet_stiched\Assets\scripts\droplet.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\Player.cs" Line="18" Column="31" />
-      <File FileName="Assets\scripts\Sword.cs" Line="25" Column="3" />
-      <File FileName="Assets\scripts\buttonstate.cs" Line="11" Column="96" />
+      <File FileName="Assets\scripts\Sword.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\buttonstate.cs" Line="28" Column="62" />
+      <File FileName="Assets\scripts\Player.cs" Line="49" Column="1" />
+      <File FileName="Assets\scripts\InventoryDisplay.cs" Line="16" Column="34" />
+      <File FileName="Assets\scripts\BackToScene1.cs" Line="3" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
