@@ -13,9 +13,12 @@ public class Player : MonoBehaviour {
 	public GameObject prey;
 	GameObject energyBar;
 	bool ogreIsAboutToDie = false;
+	bool eventContact = false;
+
 	int score = 0;
 	private bool facingRight = true;
 
+	public Interactions interactions;
 
 	IEnumerator yieldConnect()
 	{
@@ -55,27 +58,19 @@ public class Player : MonoBehaviour {
 //		img.fillAmount = 1f;
 //		StartCoroutine(yieldConnect());
 	}
-	void OnCollisionEnter2D(Collision2D col)
+/*	void OnTriggerEnter2D(Collider2D col)
 	{
-//		if (col.gameObject.tag == "prey")
-//		{
-//			//AudioSource.PlayClipAtPoint(prey.audio.clip, transform.position);
-//			prey.GetComponent<AudioSource>().Play();
-//			Destroy(col.gameObject);  
-////			Image img = healthBar.GetComponent<Image>();
-////			img.fillAmount =  img.fillAmount + 0.2f;
-//			energy = energy + energy_step;			
-//			Text energyLevelText = healthBar.GetComponent<Text>();
-//			energyLevelText.text = "" + energy;
-//			Image img = energyBar.GetComponent<Image>();
-//			img.fillAmount = img.fillAmount + .01f * energy_step;
-//
-//
-//
-//
-//		}
-	}
+		
+	
+		if (col.gameObject.CompareTag("prop"))
+		{
+			interactions.showText ("Prop contact!");
+		}
 
+
+
+	}
+*/
 	void Flip()
 	{
 		//Debug.Log("switching...");
@@ -86,6 +81,9 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+	void Update(){
+		
+	}
 	void FixedUpdate () {
 //		var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 //		Quaternion rot = Quaternion.LookRotation(transform.position - mousePosition, Vector3.forward);

@@ -22,9 +22,12 @@ public class HotDog : MonoBehaviour {
 //		audios[0].clip = clip;
 //		audios[0].Play();
 		//GameState.currentLevel = "jungle";
-		Debug.Log("Calling combat scene");
-		SceneManager.LoadScene("combat");
+
+		Debug.Log ("Calling combat scene");
+		SceneManager.LoadScene ("combat");
+
 
 	}
+
 
 }
