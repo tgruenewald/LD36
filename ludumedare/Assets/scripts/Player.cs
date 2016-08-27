@@ -41,19 +41,19 @@ public class Player : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
-		var brickText = GameObject.Find("BrickText");
+//		var brickText = GameObject.Find("BrickText");
 
 
 		score = 0;
 		ogreIsAboutToDie = false;
-		healthBar = GameObject.Find("EnergyLevel");
-		Text energyLevelText = healthBar.GetComponent<Text>();
-		energyLevelText.text = "" + energy;
-
-		energyBar = GameObject.Find("EnergyBar");
-		Image img = energyBar.GetComponent<Image>();
-		img.fillAmount = 1f;
-		StartCoroutine(yieldConnect());
+//		healthBar = GameObject.Find("EnergyLevel");
+//
+//		energyLevelText.text = "" + energy;
+//
+//		energyBar = GameObject.Find("EnergyBar");
+//		Image img = energyBar.GetComponent<Image>();
+//		img.fillAmount = 1f;
+//		StartCoroutine(yieldConnect());
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
