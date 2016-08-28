@@ -24,9 +24,18 @@ public class Interactions : MonoBehaviour {
 
 	public int textStage = 0;
 	// Use this for initialization
+	private static Interactions interactions = null; 
 
 	void Start () {
 		//showText ("Here is some text.");
+	}
+	void Awake() {
+		DontDestroyOnLoad (gameObject);
+		if (interactions == null) {
+			interactions = this;
+		} else {
+			DestroyObject(gameObject);
+		}
 	}
 
 	// Update is called once per frame
