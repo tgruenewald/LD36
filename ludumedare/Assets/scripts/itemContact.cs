@@ -12,11 +12,15 @@ public class itemContact : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Jump") && contact && !Interactions.inDialogue)
+		
+		if (Input.GetButtonDown("Jump") && contact && !Interactions.inDialogue && !Interactions.dialogueComplete)
 		{
-			//Debug.Log ("space pressed");
+			Debug.Log ("itemContact test " + Interactions.inDialogue + Interactions.dialogueComplete);
+
 			Interactions.showText (this.tag);
 		}
+
+
 
 
 	}

@@ -5,67 +5,191 @@ using UnityEngine.UI;
 public class Interactions : MonoBehaviour {
 
 	public Image textbg;
+	public Image textBorder;
+	public Image talkingHead;
+
+	public Sprite radioImage;
+	public Sprite pcImage;
+
+	public Text textWithImage;
 	public Text storytext;
+	public bool dialogueComplete = false;
 	public bool inDialogue = false;
 	public bool printingText = false;
-	private float fadeInTime = 0.025F;
 
+	public string dialogueTag = "";
+
+	private float fadeInTime = 0.025F;
+	private bool keyPressed = false;
+
+	public int textStage = 0;
 	// Use this for initialization
 
 	void Start () {
 		//showText ("Here is some text.");
 	}
-	
+
 	// Update is called once per frame
 	public void Update(){
 		if (Input.GetButtonDown ("Fire1")||Input.GetButtonDown("Jump")) {
 			//Debug.Log ("clicked");
-			if (inDialogue) {
-				inDialogue = false;
+
+			if (printingText)
+			{
+				printingText = false;
+			}
+			else if (dialogueComplete&&!printingText) {
+
 				//Debug.Log ("hiding text");
 				hideText ();
+				inDialogue = false;
+				dialogueComplete = false;
 
-			} 
+			} 			
+			else if(inDialogue&&!printingText)
+			{
+				showText(dialogueTag);
+			}
 		}//if click
 	}//if Update
 
 
 	public void showText(string tag){
+		dialogueTag = tag;
 		//Debug.Log ("showing text: " + dialoguetext);
+		inDialogue = true;
+
+		if(textManager (tag)==true){
+			talkingHead.enabled = true;
+		}
+		textBorder.enabled = true;
 		textbg.enabled = true;
-		StartCoroutine (animate (textManager(tag)));
+
+		//StartCoroutine (animate (textManager(tag)));
 
 	}
 
 	public void hideText (){
+		textBorder.enabled = false;
+		talkingHead.enabled = false;
+		textWithImage.enabled = false;
 		textbg.enabled = false;
 		storytext.enabled = false;
 	}
 
-	public IEnumerator animate(string strComplete){
+	public IEnumerator animate(string strComplete, string speaker){
+		Text text;
+		if (speaker == "radio"){
+			text = textWithImage;
+			talkingHead.sprite = radioImage;
+		}
+		else if (speaker == "pc"){
+			text = textWithImage;
+			talkingHead.sprite = pcImage;
+		}
+		else{
+			text = storytext;
+		}
+
 		printingText = true;
 		int i = 0;
-		storytext.text = "";
-		storytext.enabled = true;
+		text.text = "";
+		text.enabled = true;
 		while( i < strComplete.Length && printingText){
-			storytext.text += strComplete[i++];
+			text.text += strComplete[i++];
 			yield return new WaitForSeconds(fadeInTime);
 		}
-		storytext.text = strComplete;
+		text.text = strComplete;
 		printingText = false;
-		inDialogue = true;
+
+
 	}
 
-	public string textManager(string tag)
+	public bool textManager(string tag)
 	{
-		switch(tag)
-		{
-		case "idalia":
-			return "Idalia never shuts up.";
-		case "whale":
-			return "This is a whale of a problem.";
+		textStage++;
+		switch (tag) {
+
+		case "radio1":
+			StartCoroutine (animate ("This is Captain Arugua. Can anyone hear me? Over.", "radio"));
+			dialogueComplete = true;
+			textStage = 0;
+			return true;
+
+		case "radio2":
+			StartCoroutine (animate ("Someone pick up this radio. Over.", "radio"));
+			dialogueComplete = true;
+			textStage = 0;
+			return true;
+
+		case "radio3":
+			switch (textStage) {
+				case 1:
+				StartCoroutine (animate ("Captain Arugua?", "pc"));
+					return true;
+				case 2:
+				StartCoroutine (animate ("Finally.", "radio"));
+					return true;
+				case 3:
+						StartCoroutine (animate ("What's going on? I was just attacked by a microwave!", "pc"));
+					return true;
+
+				case 4:
+				StartCoroutine (animate ("Something's gone wrong with the tech. Not just at HQ, but throughout the city. Over.", "radio"));
+					return true;
+
+				case 5:
+				StartCoroutine (animate ("I hope it's not aliens again. Or Chthulu.", "pc"));
+					return true;
+
+				case 6:
+				StartCoroutine (animate ("Whatever it is, we've triangulated the source of the problem at the Nature and Technology Museum. Over.", "radio"));
+					return true;
+
+				case 7:
+				StartCoroutine (animate ("I'm on my way.", "pc"));
+					return true;
+
+				case 8:
+				StartCoroutine (animate ("Get to the rooftop. We're sending in a helicopter to airlift you to the drop point. Over.", "radio"));
+					return true;
+
+				case 9:
+				StartCoroutine (animate ("Wait, was I supposed to have been saying \"Over\" this whole time?", "pc"));
+					return true;
+
+			case 10:
+				StartCoroutine (animate ("*distinct sound of facepalm* Just move it.", "radio"));
+				dialogueComplete = true;
+				textStage = 0;
+					return true;
+				default:
+					return true;
+
+
+			}//radio3 switch
+
 		default:
-			return "textManager did not find string";
+			StartCoroutine (animate ("textManager did not find string", ""));
+			return false;
+
+		}//tagswitch
+	}//textManager
+
+/*	public IEnumerator WaitInput(string text, Text textbox) {
+		keyPressed = false;
+		while(!keyPressed)
+		{
+			//Debug.Log ("waiting for input in coroutine");
+			if ((Input.GetButtonDown ("Fire1")||Input.GetButtonDown("Jump"))&& !printingText) {
+				keyPressed = true;
+				break;
+			}
+			yield return 0;
 		}
-	}
+		StartCoroutine (animate (text,textbox));
+		dialogueComplete = true;
+		inDialogue = false;
+	}*/
 }
+
