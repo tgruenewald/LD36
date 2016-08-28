@@ -169,6 +169,74 @@ public class Interactions : MonoBehaviour {
 
 			}//radio3 switch
 
+		case "radio6":
+			switch(textStage)
+			{
+			case 1:
+				StartCoroutine (animate ("Where's everyone else?", "pc"));
+				return true;
+			case 2:
+				StartCoroutine (animate ("They're trapped in the elevator.", "radio"));
+				return true;
+			case 3:
+				StartCoroutine (animate ("Great. I'll wait for them. What's the ETA on the helicopter?", "pc"));
+				return true;
+			case 4: 
+				StartCoroutine (animate ("Should be arriving ... around now.", "radio"));
+				dialogueComplete = true;
+				textStage = 0;
+				return true;
+			default: 
+				return true;
+			}//radio6
+		case "radio11":
+			switch (textStage)
+			{
+			case 1: 
+				StartCoroutine (animate ("So my GPS isn't working ...", "pc"));
+				return true;
+			case 2:
+				StartCoroutine (animate ("And?", "radio"));
+				return true;
+			case 3:
+				StartCoroutine (animate ("How do I get to the museum?", "pc"));
+				return true;
+			case 4:
+				StartCoroutine (animate ("You've never been to the Nature and Technology Museum?", "radio"));
+				return true;
+			case 5:
+				StartCoroutine (animate ("Sure. Once. On a field trip.", "pc"));
+				return true;
+			case 6:
+				StartCoroutine (animate ("It's on the corner of Portland and Denver.", "radio"));
+				return true;
+			case 7:
+				StartCoroutine (animate ("... and where are those streets?", "pc"));
+				return true;
+			case 8:
+				StartCoroutine (animate ("You don't know *static* unbelievable! *static* If you went down the fire escape, you're on Portland right now.", "radio"));
+				return true;
+			case 9: 
+				StartCoroutine (animate ("So ... Denver is ... which way?", "pc"));
+				return true;
+			case 10:
+				StartCoroutine (animate ("*static*", "radio"));
+				return true;
+			case 11:
+				StartCoroutine (animate ("Hello? Over?", "pc"));
+				return true;
+			case 12:
+				StartCoroutine (animate ("*static*", "radio"));
+				return true;
+			case 13:
+				StartCoroutine (animate ("Looks like I'm on my own.", "pc"));
+				dialogueComplete = true;
+				textStage = 0;
+				return true;
+			default: 
+				return true;
+			}//radio11
+
 		default:
 			StartCoroutine (animate ("textManager did not find string", ""));
 			return false;
