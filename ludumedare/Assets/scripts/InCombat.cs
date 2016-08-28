@@ -12,6 +12,7 @@ public class InCombat : MonoBehaviour {
 	Text statusLine;
 	Text enemyHealth;
 	Text myHealth;
+	string droppedWeapon;
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Starting InCombat: " + GameState.weaponsFileName);
@@ -29,13 +30,12 @@ public class InCombat : MonoBehaviour {
 		myHealth.text = "Health: " + GameState.playerHP;
 
 		npcWeaponHP = int.Parse(CSVReader.FindItem("npc", "owner", "hp", weaponsData));
-
-
-
+		droppedWeapon = CSVReader.FindItem ("npc", "owner", "name", weaponsData);
 
 	}
 	IEnumerator yieldCalcDamageToNPC()
 	{
+
 		statusLine.text = "";
 		statusLine.text = "Calculating damage that the player did to the bad guy";
 		GameState.npcHP = GameState.npcHP - weaponHP;
@@ -48,8 +48,22 @@ public class InCombat : MonoBehaviour {
 			statusLine.text = "";
 			statusLine.text = "You win!!!";
 			yield return new WaitForSeconds(1);
+
+			// now make an exit door available 
+
+
+			// and give them the prize.
+			GameObject prize = GameObject.Find (droppedWeapon);
+			prize.GetComponent<SpriteRenderer> ().enabled = true;
+			prize.GetComponent<BoxCollider2D> ().enabled = true;
+
+			GameObject exitDoor = GameObject.Find ("exit_door");
+			exitDoor.GetComponent<SpriteRenderer> ().enabled = true;
+			exitDoor.GetComponent<BoxCollider2D> ().enabled = true;
+			exitDoor.GetComponent<exit_combat> ().nextScene = GameState.currentLevel;
+
 			GameState.makeInventoryButtonsInteractable (true);			
-			SceneManager.LoadScene (GameState.currentLevel);
+			//SceneManager.LoadScene (GameState.currentLevel);
 		}
 
 		// begin npc
