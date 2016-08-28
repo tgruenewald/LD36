@@ -7,7 +7,7 @@ public class buttonstate : MonoBehaviour {
 	void Start () {
 
         // TODO: use this for initialization
-		Debug.Log("loading inventorycell");
+		//Debug.Log("loading inventorycell");
 		GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("sprites/inventorycell");
     }
     public void hover()
@@ -27,6 +27,8 @@ public class buttonstate : MonoBehaviour {
         //GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/sword");
 		UnityEngine.UI.Button button = GetComponent<UnityEngine.UI.Button> ();
 		Debug.Log ("You selected the " + button.tag);
+		GameState.currentWeapon = button.tag;
+
     }
     public void setButtonImage()
     {

@@ -2,6 +2,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 public class StartCombat : MonoBehaviour {
+	public string weaponsFileName;
+	public GameObject npc;
+	public int npcHP;
+	public string currentLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +28,10 @@ public class StartCombat : MonoBehaviour {
 		//GameState.currentLevel = "jungle";
 
 		Debug.Log ("Calling combat scene");
+		GameState.weaponsFileName = weaponsFileName;
+		GameState.npc = npc;
+		GameState.npcHP = npcHP;
+		GameState.currentLevel = currentLevel;
 		SceneManager.LoadScene ("combat");
 
 
