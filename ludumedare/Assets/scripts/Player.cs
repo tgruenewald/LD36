@@ -104,7 +104,10 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll)
 	{
 		var tag = coll.gameObject.tag;
-
+		if (tag == "portkey") {
+			// don't inventory the portal itself
+			return;
+		}
 		Button inventorySlot = GameObject.Find ("InventoryButton" + (InventoryNumber + 1)).GetComponent<UnityEngine.UI.Button> ();
 		inventorySlot.tag = tag;
 		inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
