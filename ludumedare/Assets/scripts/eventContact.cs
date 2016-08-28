@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class eventContact : MonoBehaviour {
-	public Interactions interactions;
+	Interactions interactions;
+	public eventContact eventcontact = null;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -16,6 +17,8 @@ public class eventContact : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
+		Debug.Log ("collided");
+		interactions = GameObject.Find ("judy").GetComponent<Player> ().Interactions;
 		interactions.showText (this.tag);
 
 	}

@@ -9,7 +9,7 @@ public class StartGame : MonoBehaviour {
 	}
 	public void click() {
 		Debug.Log ("start the game");
-		//SceneManager.LoadScene ("scene2");
+		SceneManager.LoadScene ("office");
 	}
 	// Update is called once per frame
 	void Update () {
