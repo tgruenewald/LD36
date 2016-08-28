@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-
+using System.Linq;
 public class Player : MonoBehaviour {
 	public static int max_number_of_walls = 15;
 	public const int MAX_INVENTORY = 14;
@@ -21,7 +21,17 @@ public class Player : MonoBehaviour {
 	public static Button[] InventoryArray = new Button[MAX_INVENTORY];
 	static bool created = false;
 	private static Player playerInstance;
-
+	private string[] weapons = {
+		"phaser", 
+		"sword",
+		"club",
+		"rock",
+		"gun",
+		"crossbow",
+		"grenade",
+		"sling",
+		"spear"
+	};
 
 	IEnumerator yieldConnect()
 	{
@@ -110,13 +120,16 @@ public class Player : MonoBehaviour {
 			// don't inventory the portal itself
 			return;
 		}
-		if (tag == "item") {
+
+         
+		if (weapons.Contains (tag)) {
+
 			// only add items to inventory
 			Button inventorySlot = GameObject.Find ("InventoryButton" + (InventoryNumber + 1)).GetComponent<UnityEngine.UI.Button> ();
 			inventorySlot.tag = tag;
 			Debug.Log ("tag getting assigned " + tag);
-			inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
-			InventoryArray[InventoryNumber] = inventorySlot;
+			inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer> ().sprite;//Resources.Load<Sprite>("Sprites/sword");
+			InventoryArray [InventoryNumber] = inventorySlot;
 			InventoryNumber++;
 			if (InventoryNumber >= MAX_INVENTORY) {
 				InventoryNumber = 0;
