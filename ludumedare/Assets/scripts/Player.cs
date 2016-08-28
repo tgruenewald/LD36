@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 	public static int max_number_of_walls = 15;
-	public const int MAX_INVENTORY = 7;
+	public const int MAX_INVENTORY = 14;
 	public float speed = 20f;
 	public int energy = 20;
 	public int energy_step = 5;
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 //		var brickText = GameObject.Find("BrickText");
 		Debug.Log ("Player start:  inventory = " + InventoryNumber);
+		GameState.player = gameObject;
 		// repopulate the inventory
 //		for (int i = 0; i< InventoryNumber; i++) {
 //			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
