@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 public class StartCombat : MonoBehaviour {
 	public string weaponsFileName;
-	public GameObject npc;
+	public string npcImageName;
 	public int npcHP;
 	public string currentLevel;
 
@@ -29,7 +29,9 @@ public class StartCombat : MonoBehaviour {
 
 		Debug.Log ("Calling combat scene");
 		GameState.weaponsFileName = weaponsFileName;
-		GameState.npc = npc;
+		GameState.npcImageName = npcImageName;
+
+
 		GameState.npcHP = npcHP;
 		GameState.currentLevel = currentLevel;
 		SceneManager.LoadScene ("combat");

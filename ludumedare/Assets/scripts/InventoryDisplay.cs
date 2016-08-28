@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class InventoryDisplay : MonoBehaviour {
-
+	private static InventoryDisplay inventoryDisplay = null; 
 	// Use this for initialization
 	void Start () {
 	
@@ -14,5 +14,10 @@ public class InventoryDisplay : MonoBehaviour {
 	}
 	void Awake() {
 		DontDestroyOnLoad (gameObject);
+		if (inventoryDisplay == null) {
+			inventoryDisplay = this;
+		} else {
+			DestroyObject(gameObject);
+		}
 	}
 }

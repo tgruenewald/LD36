@@ -23,10 +23,13 @@ public class InCombat : MonoBehaviour {
 
 		enemyHealth = GameObject.Find ("EnemyText").GetComponent<UnityEngine.UI.Text> ();
 		myHealth = GameObject.Find ("myhitpoints").GetComponent<UnityEngine.UI.Text> ();
-		enemyHealth.text = enemyHealth.text + GameState.npcHP;
-		myHealth.text = myHealth.text + GameState.playerHP;
+		enemyHealth.text = "";
+		myHealth.text = "";
+		enemyHealth.text = "Enemy:  " + GameState.npcHP;
+		myHealth.text = "Health: " + GameState.playerHP;
 
 		npcWeaponHP = int.Parse(CSVReader.FindItem("npc", "owner", "hp", weaponsData));
+
 
 
 
@@ -45,10 +48,17 @@ public class InCombat : MonoBehaviour {
 			statusLine.text = "";
 			statusLine.text = "You win!!!";
 			yield return new WaitForSeconds(1);
+			GameState.makeInventoryButtonsInteractable (true);			
 			SceneManager.LoadScene (GameState.currentLevel);
 		}
 
 		// begin npc
+		if (weaponHP == 0) {
+			statusLine.text = "";
+			statusLine.text = "You missed";			
+			yield return new WaitForSeconds(1);	
+		}
+
 		statusLine.text = "";
 		statusLine.text = "NPC turn to do damage";
 		GameState.playerHP = GameState.playerHP - npcWeaponHP - playerDamageFromWeapon;
@@ -63,18 +73,21 @@ public class InCombat : MonoBehaviour {
 		myHealth.text = "";
 		myHealth.text = "Health: " + GameState.playerHP;
 		if (GameState.playerHP <= 0) {
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds (2);
 			statusLine.text = "";
 			statusLine.text = "You died";
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds (1);
+			GameState.makeInventoryButtonsInteractable (true);			
 			SceneManager.LoadScene ("youdied");
+		} else {
+			// if you made it this far, you lived to fight again
+			statusLine.text = "";
+			statusLine.text = "You live to fight again";
+			GameState.makeInventoryButtonsInteractable (true);			
 		}
 
 
-		// if you made it this far, you lived to fight again
-		statusLine.text = "";
-		statusLine.text = "You live to fight again";
-		GameState.makeInventoryButtonsInteractable (true);
+
 	}
 	// Update is called once per frame
 	void Update () {

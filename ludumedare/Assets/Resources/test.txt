@@ -1,6 +1,0 @@
-name,owner,hp,player_damage
-phaser,player,3,5
-sword,player,5,0
-pistol,player,20,1
-rock,player,100,0
-spear,npc,20,0

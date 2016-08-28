@@ -11,7 +11,7 @@ public static class GameState
     public static string currentLevel = "Scene1";
 	public static string weaponsFileName = null;
 	public static string currentWeapon = null;
-	public static GameObject npc = null;
+	public static string npcImageName = null;
 	public static int npcHP = 0;
 
 
