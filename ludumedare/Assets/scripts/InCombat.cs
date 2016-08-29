@@ -19,19 +19,39 @@ public class InCombat : MonoBehaviour {
 		weaponsData = CSVReader.Read (GameState.weaponsFileName);
 
 		//Debug.Log ("phaser = " + CSVReader.FindItem ("phaser", "name", "hp", weaponsData));
-		statusLine = GameObject.Find ("statusLine").GetComponent<UnityEngine.UI.Text> ();
-		statusLine.text = "Starting battle";
+//		statusLine = GameObject.Find ("statusLine").GetComponent<UnityEngine.UI.Text> ();
+//		statusLine.text = "Starting battle";
 
-		enemyHealth = GameObject.Find ("EnemyText").GetComponent<UnityEngine.UI.Text> ();
-		myHealth = GameObject.Find ("myhitpoints").GetComponent<UnityEngine.UI.Text> ();
-		enemyHealth.text = "";
-		myHealth.text = "";
-		enemyHealth.text = "Enemy:  " + GameState.npcHP;
-		myHealth.text = "Health: " + GameState.playerHP;
+//		enemyHealth = GameObject.Find ("EnemyText").GetComponent<UnityEngine.UI.Text> ();
+//		myHealth = GameObject.Find ("myhitpoints").GetComponent<UnityEngine.UI.Text> ();
+
+
+		activateHUD (true);
+				enemyHealth.text = "";
+				myHealth.text = "";
+				enemyHealth.text = "Enemy:  " + GameState.npcHP;
+				myHealth.text = "Health: " + GameState.playerHP;
 
 		npcWeaponHP = int.Parse(CSVReader.FindItem("npc", "owner", "hp", weaponsData));
 		droppedWeapon = CSVReader.FindItem ("npc", "owner", "name", weaponsData);
 
+
+
+	}
+
+	void activateHUD(bool enabled) {
+		GameObject.Find ("enemyBoxBorder").GetComponent<Image>().enabled = enabled;
+		GameObject.Find ("healthBoxBorder").GetComponent<Image>().enabled = enabled;
+		GameObject.Find ("statusboxborder").GetComponent<Image>().enabled = enabled;
+		GameObject.Find ("enemystatusbox").GetComponent<Image>().enabled = enabled;
+		GameObject.Find ("healthstatusbox").GetComponent<Image>().enabled = enabled;
+		GameObject.Find ("statusstatusbox").GetComponent<Image>().enabled = enabled;
+		enemyHealth = GameObject.Find ("enemyHealthtext").GetComponent<Text> ();
+		enemyHealth.enabled = enabled;
+		myHealth = GameObject.Find ("pcHealthtext").GetComponent<Text> ();
+		myHealth.enabled = enabled;
+		statusLine = GameObject.Find ("statusLineText").GetComponent<Text> ();
+		statusLine.enabled = enabled;		
 	}
 	IEnumerator yieldCalcDamageToNPC()
 	{
@@ -108,15 +128,18 @@ public class InCombat : MonoBehaviour {
 	
 		if (GameState.currentWeapon != null) {
 			// start the battle
-			currentWeapon = GameState.currentWeapon;
-			GameState.currentWeapon = null;
-			GameState.makeInventoryButtonsInteractable (false);
-			Debug.Log ("Selected " + currentWeapon);
-			weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
-			playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
+			Debug.Log("deactiving hud");
+			activateHUD (false);
 
-
-			StartCoroutine(yieldCalcDamageToNPC());
+//			currentWeapon = GameState.currentWeapon;
+//			GameState.currentWeapon = null;
+//			GameState.makeInventoryButtonsInteractable (false);
+//			Debug.Log ("Selected " + currentWeapon);
+//			weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
+//			playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
+//
+//
+//			StartCoroutine(yieldCalcDamageToNPC());
 		}
 
 		// 

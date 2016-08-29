@@ -34,7 +34,7 @@ public class StartCombat : MonoBehaviour {
 
 		GameState.npcHP = npcHP;
 		GameState.currentLevel = currentLevel;
-		SceneManager.LoadScene ("combat");
+		SceneManager.LoadScene ("generic_fight");
 
 
 	}
