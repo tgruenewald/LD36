@@ -6,6 +6,7 @@ public class StartCombat : MonoBehaviour {
 	public string npcImageName;
 	public int npcHP;
 	public string currentLevel;
+	public string currentBattle;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,7 @@ public class StartCombat : MonoBehaviour {
 
 		GameState.npcHP = npcHP;
 		GameState.currentLevel = currentLevel;
+		GameState.currentBattle = currentBattle;
 		SceneManager.LoadScene ("generic_fight");
 
 

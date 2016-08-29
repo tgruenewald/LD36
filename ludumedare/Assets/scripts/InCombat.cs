@@ -24,13 +24,14 @@ public class InCombat : MonoBehaviour {
 
 //		enemyHealth = GameObject.Find ("EnemyText").GetComponent<UnityEngine.UI.Text> ();
 //		myHealth = GameObject.Find ("myhitpoints").GetComponent<UnityEngine.UI.Text> ();
-
-
+		Debug.Log("battle is " + GameState.currentBattle);
+		GameObject.Find (GameState.currentBattle).GetComponent<SpriteRenderer> ().enabled = true;
 		activateHUD (true);
-				enemyHealth.text = "";
-				myHealth.text = "";
-				enemyHealth.text = "Enemy:  " + GameState.npcHP;
-				myHealth.text = "Health: " + GameState.playerHP;
+		enemyHealth.text = "";
+		myHealth.text = "";
+		enemyHealth.text = "Enemy:  " + GameState.npcHP;
+		myHealth.text = "Health: " + GameState.playerHP;
+		statusLine.text = "";
 
 		npcWeaponHP = int.Parse(CSVReader.FindItem("npc", "owner", "hp", weaponsData));
 		droppedWeapon = CSVReader.FindItem ("npc", "owner", "name", weaponsData);
@@ -65,22 +66,28 @@ public class InCombat : MonoBehaviour {
 		yield return new WaitForSeconds(2);
 		if (GameState.npcHP <= 0) {
 			yield return new WaitForSeconds(2);
+			GameObject.Find ("NpcSpawn").GetComponent<SpriteRenderer> ().enabled = false;
 			statusLine.text = "";
 			statusLine.text = "You win!!!";
 			yield return new WaitForSeconds(1);
 
-			// now make an exit door available 
 
 
+			activateHUD (false);
 			// and give them the prize.
 			GameObject prize = GameObject.Find (droppedWeapon);
 			prize.GetComponent<SpriteRenderer> ().enabled = true;
 			prize.GetComponent<BoxCollider2D> ().enabled = true;
 
+			// now make an exit door available 
 			GameObject exitDoor = GameObject.Find ("exit_door");
 			exitDoor.GetComponent<SpriteRenderer> ().enabled = true;
 			exitDoor.GetComponent<BoxCollider2D> ().enabled = true;
 			exitDoor.GetComponent<exit_combat> ().nextScene = GameState.currentLevel;
+			exitDoor.GetComponent<exit_combat> ().currentBattle = GameState.currentBattle;
+
+			// let them out to run to the door
+			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
 
 			GameState.makeInventoryButtonsInteractable (true);			
 			//SceneManager.LoadScene (GameState.currentLevel);
@@ -128,18 +135,15 @@ public class InCombat : MonoBehaviour {
 	
 		if (GameState.currentWeapon != null) {
 			// start the battle
-			Debug.Log("deactiving hud");
-			activateHUD (false);
+			currentWeapon = GameState.currentWeapon;
+			GameState.currentWeapon = null;
+			GameState.makeInventoryButtonsInteractable (false);
+			Debug.Log ("Selected " + currentWeapon);
+			weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
+			playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
 
-//			currentWeapon = GameState.currentWeapon;
-//			GameState.currentWeapon = null;
-//			GameState.makeInventoryButtonsInteractable (false);
-//			Debug.Log ("Selected " + currentWeapon);
-//			weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
-//			playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
-//
-//
-//			StartCoroutine(yieldCalcDamageToNPC());
+
+			StartCoroutine(yieldCalcDamageToNPC());
 		}
 
 		// 
