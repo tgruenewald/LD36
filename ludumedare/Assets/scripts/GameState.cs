@@ -14,6 +14,7 @@ public static class GameState
 	public static string npcImageName = null;
 	public static int npcHP = 0;
 
+	private static GameObject pc = null;
 
 	public static void makeInventoryButtonsInteractable(bool enable) {
 		for (int i = 0; i< Player.InventoryNumber; i++) {
@@ -22,6 +23,19 @@ public static class GameState
 		}		
 	}
 
+	public static void SetPC(GameObject player){
+		GameState.pc = player;
+	}
+
+	/*public static GameObject GetPC(){
+		if(pc == null){
+			pc = GameObject.FindGameObjectWithTag("Player");
+			if(pc == null)
+				return null;
+		}
+
+		return pc.GetComponent<player>();
+	}*/
 }
 
 

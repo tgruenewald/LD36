@@ -1,25 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\StartCombat.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\SwitchLevel.cs">
     <Files>
-      <File FileName="Assets\scripts\SpawnPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\InCombat.cs" Line="42" Column="1" />
-      <File FileName="Assets\scripts\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\HotDog.cs" Line="1" Column="1" />
-      <File FileName="..\..\droplet_stiched\Assets\scripts\droplet.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\Sword.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\buttonstate.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\InventoryDisplay.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\BackToScene1.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\GameState 1.cs" Line="11" Column="25" />
+      <File FileName="Assets\scripts\SwitchLevel.cs" Line="22" Column="33" />
       <File FileName="Assets\scripts\Interactions.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\event.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\OneDrive\Unity Projects\DFIU\Assets\Scripts\storyManager.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\OneDrive\Unity Projects\DFIU\Assets\Scripts\gameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\Player.cs" Line="1" Column="1" />
       <File FileName="Assets\scripts\eventContact.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\StartCombat.cs" Line="37" Column="41" />
-      <File FileName="Assets\scripts\itemContact.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\GameState.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\NpcSpawnPoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\CSVReader.cs" Line="1" Column="1" />
-      <File FileName="Assets\scripts\exit_combat.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\OneDrive\Unity Projects\DFIU\Assets\Scripts\roomScript.cs" Line="1" Column="1" />
+      <File FileName="..\..\..\OneDrive\Unity Projects\DFIU\Assets\Scripts\animateText.cs" Line="1" Column="1" />
+      <File FileName="Assets\scripts\InCombat.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
