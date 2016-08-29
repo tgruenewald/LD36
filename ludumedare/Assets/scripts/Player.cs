@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Linq;
 public class Player : MonoBehaviour {
 	public static int max_number_of_walls = 15;
-	public const int MAX_INVENTORY = 14;
+	public const int MAX_INVENTORY = 4;  // real max of 14
 	public float speed = 20f;
 	public int energy = 20;
 	public int energy_step = 5;
@@ -30,8 +30,7 @@ public class Player : MonoBehaviour {
 		"crossbow",
 		"grenade",
 		"sling",
-		"spear",
-		"hotdog"
+		"spear"
 	};
 
 	IEnumerator yieldConnect()

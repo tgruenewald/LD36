@@ -58,20 +58,28 @@ public class InCombat : MonoBehaviour {
 	{
 
 		statusLine.text = "";
-		statusLine.text = "Calculating damage that the player did to the bad guy";
+		statusLine.text = "Using the " + currentWeapon + " against the " + GameState.enemyName;
+		yield return new WaitForSeconds(1);
 		GameState.npcHP = GameState.npcHP - weaponHP;
 		enemyHealth.text = "";
 		enemyHealth.text = "Enemy:  " + GameState.npcHP;
+
+		if (playerDamageFromWeapon > 0) {
+			statusLine.text = "";
+			statusLine.text = "Ouch! The " + currentWeapon + " malfunctions and damages me";
+			yield return new WaitForSeconds(1);			
+			GameState.playerHP = GameState.playerHP - playerDamageFromWeapon;
+			myHealth.text = "";
+			myHealth.text = "Health: " + GameState.playerHP;
+		}
 		// calculate damage
-		yield return new WaitForSeconds(2);
+
 		if (GameState.npcHP <= 0) {
-			yield return new WaitForSeconds(2);
+			yield return new WaitForSeconds(1);
 			GameObject.Find ("NpcSpawn").GetComponent<SpriteRenderer> ().enabled = false;
 			statusLine.text = "";
 			statusLine.text = "You win!!!";
 			yield return new WaitForSeconds(1);
-
-
 
 			activateHUD (false);
 			// and give them the prize.
@@ -101,20 +109,20 @@ public class InCombat : MonoBehaviour {
 		}
 
 		statusLine.text = "";
-		statusLine.text = "NPC turn to do damage";
-		GameState.playerHP = GameState.playerHP - npcWeaponHP - playerDamageFromWeapon;
+		statusLine.text = "I will damage you";
+		GameState.playerHP = GameState.playerHP - npcWeaponHP;
 
 		// calculate damage
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(1);
 
 
 		statusLine.text = "";
-		statusLine.text = "Calculating damage that the NPC did";
-		yield return new WaitForSeconds(2);
+		statusLine.text = "Calculating damage...";
+		yield return new WaitForSeconds(1);
 		myHealth.text = "";
 		myHealth.text = "Health: " + GameState.playerHP;
 		if (GameState.playerHP <= 0) {
-			yield return new WaitForSeconds (2);
+			yield return new WaitForSeconds (1);
 			statusLine.text = "";
 			statusLine.text = "You died";
 			yield return new WaitForSeconds (1);
@@ -125,7 +133,7 @@ public class InCombat : MonoBehaviour {
 		} else {
 			// if you made it this far, you lived to fight again
 			statusLine.text = "";
-			statusLine.text = "You live to fight again";
+			statusLine.text = "Battle continues";
 			GameState.makeInventoryButtonsInteractable (true);			
 		}
 

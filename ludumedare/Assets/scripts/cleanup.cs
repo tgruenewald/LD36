@@ -5,7 +5,7 @@ public class cleanup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		for (int i = 0; i< Player.InventoryNumber; i++) {
+		for (int i = 0; i< Player.MAX_INVENTORY; i++) {
 			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
 
 			inventorySlot.tag = "available";

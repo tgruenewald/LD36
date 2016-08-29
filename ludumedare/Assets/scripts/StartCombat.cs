@@ -7,7 +7,7 @@ public class StartCombat : MonoBehaviour {
 	public int npcHP;
 	public string currentLevel;
 	public string currentBattle;
-	public string music;
+	public string enemyName;
 
 	// Use this for initialization
 	void Start () {
@@ -32,7 +32,7 @@ public class StartCombat : MonoBehaviour {
 		Debug.Log ("Calling combat scene");
 		GameState.weaponsFileName = weaponsFileName;
 		GameState.npcImageName = npcImageName;
-		GameState.music = music;
+		GameState.enemyName = enemyName;
 
 		GameState.npcHP = npcHP;
 		GameState.currentLevel = currentLevel;
