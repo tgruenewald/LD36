@@ -1,17 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-public class StartGame : MonoBehaviour {
+
+public class CreditsScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
 	
 	}
-	public void click() {
-		SceneManager.LoadScene ("office");
-	}
+	
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void click(){
+		//Debug.Log ("credit button clicked");
+		SceneManager.LoadScene ("credits");
+
 	}
 }

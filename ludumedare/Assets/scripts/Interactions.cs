@@ -152,7 +152,7 @@ public class Interactions : MonoBehaviour {
 					return true;
 
 				case 6:
-				StartCoroutine (animate ("Whatever it is, we've triangulated the source of the problem at the Nature and Technology Museum. Over.", "radio"));
+				StartCoroutine (animate ("Whatever it is, we've triangulated the source of the problem at the National Aquarium. Over.", "radio"));
 					return true;
 
 				case 7:
@@ -208,10 +208,10 @@ public class Interactions : MonoBehaviour {
 				StartCoroutine (animate ("And?", "radio"));
 				return true;
 			case 3:
-				StartCoroutine (animate ("How do I get to the museum?", "pc"));
+				StartCoroutine (animate ("How do I get to the aquarium?", "pc"));
 				return true;
 			case 4:
-				StartCoroutine (animate ("You've never been to the Nature and Technology Museum?", "radio"));
+				StartCoroutine (animate ("You've never been?", "radio"));
 				return true;
 			case 5:
 				StartCoroutine (animate ("Sure. Once. On a field trip.", "pc"));

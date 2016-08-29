@@ -45,7 +45,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CreditsScript.cs" />
      <Compile Include="Assets\next.cs" />
+     <Compile Include="Assets\returnToMenu.cs" />
      <Compile Include="Assets\scripts\BackToScene1.cs" />
      <Compile Include="Assets\scripts\CSVReader.cs" />
      <Compile Include="Assets\scripts\DestroyOnContact.cs" />
