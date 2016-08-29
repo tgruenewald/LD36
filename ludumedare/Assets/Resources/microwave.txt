@@ -2,7 +2,7 @@ name,owner,hp,player_damage
 phaser,player,20,20
 rifle,player,30,0
 grenade,player,20,10
-crossbow,player,20,0
+crossbow,player,1,0
 sword,player,20,0
 spear,player,100,0
 sling,player,100,0

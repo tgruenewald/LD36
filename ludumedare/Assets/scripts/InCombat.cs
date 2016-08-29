@@ -148,24 +148,22 @@ public class InCombat : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
-		if (GameState.currentWeapon != null) {
+		if (GameState.currentWeapon != null && !calculatingDamage) {
+			calculatingDamage = true;
+			currentWeapon = GameState.currentWeapon;
+			GameState.currentWeapon = null;
 			GameState.makeInventoryButtonsInteractable (false);
 
-			if (!calculatingDamage)
-			{
-				calculatingDamage = true;
-				// start the battle
-				currentWeapon = GameState.currentWeapon;
-				GameState.currentWeapon = null;
-				Debug.Log ("Selected " + currentWeapon);
-				weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
-				playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
+				
+			// start the battle
+			Debug.Log ("Selected " + currentWeapon);
+			weaponHP = int.Parse (CSVReader.FindItem (currentWeapon, "name", "hp", weaponsData));
+			playerDamageFromWeapon = int.Parse (CSVReader.FindItem (currentWeapon, "name", "player_damage", weaponsData));
 
-				StartCoroutine(yieldCalcDamageToNPC());
-			}
+			StartCoroutine (yieldCalcDamageToNPC ());
 
-
-
+		} else {
+			GameState.currentWeapon = null;
 		}
 
 		// 
