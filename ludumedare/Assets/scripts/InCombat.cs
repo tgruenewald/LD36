@@ -118,6 +118,8 @@ public class InCombat : MonoBehaviour {
 			statusLine.text = "";
 			statusLine.text = "You died";
 			yield return new WaitForSeconds (1);
+			activateHUD (false);
+			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
 			GameState.makeInventoryButtonsInteractable (true);			
 			SceneManager.LoadScene ("youdied");
 		} else {

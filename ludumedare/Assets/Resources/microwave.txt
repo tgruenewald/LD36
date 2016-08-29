@@ -1,6 +1,6 @@
 name,owner,hp,player_damage
-phaser,player,20,5
+phaser,player,2,5
 sword,player,20,0
 club,player,20,1
 spear,player,100,0
-spear,npc,5,0
+spear,npc,100,0
