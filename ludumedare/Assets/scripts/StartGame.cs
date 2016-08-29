@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour {
 	
 	}
 	public void click() {
+		GameState.playerHP = 100;
 		SceneManager.LoadScene ("office");
 	}
 	// Update is called once per frame

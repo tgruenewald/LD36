@@ -13,6 +13,9 @@ public class InCombat : MonoBehaviour {
 	Text enemyHealth;
 	Text myHealth;
 	string droppedWeapon;
+
+	public bool calculatingDamage = false;
+
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Starting InCombat: " + GameState.weaponsFileName);
@@ -96,7 +99,7 @@ public class InCombat : MonoBehaviour {
 
 			// let them out to run to the door
 			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
-
+			calculatingDamage = false;
 			GameState.makeInventoryButtonsInteractable (true);			
 			//SceneManager.LoadScene (GameState.currentLevel);
 		}
@@ -128,12 +131,14 @@ public class InCombat : MonoBehaviour {
 			yield return new WaitForSeconds (1);
 			activateHUD (false);
 			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
-			GameState.makeInventoryButtonsInteractable (true);			
+			GameState.makeInventoryButtonsInteractable (true);	
+			calculatingDamage = false;
 			SceneManager.LoadScene ("youdied");
 		} else {
 			// if you made it this far, you lived to fight again
 			statusLine.text = "";
 			statusLine.text = "Battle continues";
+			calculatingDamage = false;
 			GameState.makeInventoryButtonsInteractable (true);			
 		}
 
@@ -144,16 +149,23 @@ public class InCombat : MonoBehaviour {
 	void Update () {
 	
 		if (GameState.currentWeapon != null) {
-			// start the battle
-			currentWeapon = GameState.currentWeapon;
-			GameState.currentWeapon = null;
 			GameState.makeInventoryButtonsInteractable (false);
-			Debug.Log ("Selected " + currentWeapon);
-			weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
-			playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
+
+			if (!calculatingDamage)
+			{
+				calculatingDamage = true;
+				// start the battle
+				currentWeapon = GameState.currentWeapon;
+				GameState.currentWeapon = null;
+				Debug.Log ("Selected " + currentWeapon);
+				weaponHP = int.Parse(CSVReader.FindItem(currentWeapon, "name", "hp", weaponsData));
+				playerDamageFromWeapon = int.Parse(CSVReader.FindItem(currentWeapon, "name", "player_damage", weaponsData));
+
+				StartCoroutine(yieldCalcDamageToNPC());
+			}
 
 
-			StartCoroutine(yieldCalcDamageToNPC());
+
 		}
 
 		// 
