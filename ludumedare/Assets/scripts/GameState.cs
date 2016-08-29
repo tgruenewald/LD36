@@ -13,6 +13,7 @@ public static class GameState
 	public static string weaponsFileName = null;
 	public static string currentWeapon = null;
 	public static string npcImageName = null;
+	public static string music = null;
 	public static int npcHP = 0;
 
 	private static GameObject pc = null;
