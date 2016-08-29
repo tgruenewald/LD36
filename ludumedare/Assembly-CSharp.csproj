@@ -64,13 +64,19 @@
      <Compile Include="Assets\scripts\SwitchLevel.cs" />
      <Compile Include="Assets\scripts\Sword.cs" />
      <Compile Include="Assets\scripts\buttonstate.cs" />
+     <Compile Include="Assets\scripts\cleanup.cs" />
      <Compile Include="Assets\scripts\enemy.cs" />
      <Compile Include="Assets\scripts\event.cs" />
      <Compile Include="Assets\scripts\eventContact.cs" />
      <Compile Include="Assets\scripts\exit_combat.cs" />
      <Compile Include="Assets\scripts\itemContact.cs" />
      <Compile Include="Assets\scripts\npc_shark.cs" />
-     <None Include="Assets\Resources\weapons_shark_vs_player.txt" />
+     <None Include="Assets\Resources\microwave.txt" />
+     <None Include="Assets\Resources\computer.txt" />
+     <None Include="Assets\Resources\shark.txt" />
+     <None Include="Assets\Resources\helicopter.txt" />
+     <None Include="Assets\Resources\stand.txt" />
+     <None Include="Assets\Resources\camera.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

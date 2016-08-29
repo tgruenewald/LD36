@@ -26,11 +26,12 @@ public class Player : MonoBehaviour {
 		"sword",
 		"club",
 		"rock",
-		"gun",
+		"rifle",
 		"crossbow",
 		"grenade",
 		"sling",
-		"spear"
+		"spear",
+		"hotdog"
 	};
 
 	IEnumerator yieldConnect()
