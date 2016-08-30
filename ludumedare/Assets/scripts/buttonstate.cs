@@ -28,11 +28,23 @@ public class buttonstate : MonoBehaviour {
 		UnityEngine.UI.Button button = GetComponent<UnityEngine.UI.Button> ();
 		Debug.Log ("You selected the " + button.tag);
 		GameState.currentWeapon = button.tag;
-
-		if (button.tag == "hotdog" || button.tag == "grenade") {
+		if (button.tag == "hotdog") {
+			GameState.playerHP = GameState.playerHP + 40;
+			if (GameState.playerHP > 100) {
+				GameState.playerHP = 100;
+			}			
+		}
+			
+		// these are consumable
+		if (button.tag == "hotdog" || button.tag == "grenade" || button.tag == "spear" || button.tag == "rock") {
 			button.tag = "available";
 			button.image.sprite = Resources.Load<Sprite>("Sprites/inventorycell");
 
+		}
+
+		if (!GameState.inBattle) {
+			button.tag = "available";
+			button.image.sprite = Resources.Load<Sprite>("Sprites/inventorycell");			
 		}
 
     }

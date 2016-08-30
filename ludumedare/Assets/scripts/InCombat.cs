@@ -19,6 +19,7 @@ public class InCombat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameState.inBattle = true;
 		GameState.currentWeapon = null;
 		Debug.Log ("Starting InCombat: " + GameState.weaponsFileName);
 		weaponsData = CSVReader.Read (GameState.weaponsFileName);
@@ -116,7 +117,7 @@ public class InCombat : MonoBehaviour {
 			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
 			calculatingDamage = false;
 			GameState.makeInventoryButtonsInteractable (true);			
-			//SceneManager.LoadScene (GameState.currentLevel);
+			GameState.inBattle = false;
 		}
 		else
 		{
@@ -139,6 +140,7 @@ public class InCombat : MonoBehaviour {
 		myHealth.text = "";
 		myHealth.text = "Health: " + GameState.playerHP;
 		if (GameState.playerHP <= 0) {
+			GameState.gameOver = true;
 			yield return new WaitForSeconds (1);
 			statusLine.text = "";
 			statusLine.text = "You died";
@@ -147,6 +149,7 @@ public class InCombat : MonoBehaviour {
 			GameObject.Find ("gate").GetComponent<BoxCollider2D> ().enabled = false;
 			GameState.makeInventoryButtonsInteractable (true);	
 			calculatingDamage = false;
+			GameState.inBattle = false;
 			SceneManager.LoadScene ("youdied");
 		} else {
 			// if you made it this far, you lived to fight again
@@ -172,10 +175,7 @@ public class InCombat : MonoBehaviour {
 			if (currentWeapon == "hotdog") {
 				Debug.Log ("yum.  hotdog good");
 				hotdogUsed = true;
-				GameState.playerHP = GameState.playerHP + 40;
-				if (GameState.playerHP > 100) {
-					GameState.playerHP = 100;
-				}
+
 				myHealth.text = "";
 				myHealth.text = "Health: " + GameState.playerHP;
 			}

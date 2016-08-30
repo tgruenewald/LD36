@@ -14,6 +14,9 @@ public static class GameState
 	public static string currentWeapon = null;
 	public static string npcImageName = null;
 	public static string enemyName = null;
+	public static bool inBattle = false;
+	public static int score = 0;
+	public static bool gameOver = false;
 	public static int npcHP = 0;
 
 	private static GameObject pc = null;

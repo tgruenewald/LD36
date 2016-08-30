@@ -4,9 +4,9 @@ rifle,player,0,5
 grenade,player,0,50
 crossbow,player,0,2
 sword,player,5,5
-spear,player,5,0
+spear,player,20,0
 sling,player,15,0
 club,player,25,0
-rock,player,100,0
+rock,player,50,0
 hotdog,player,0,0
 hotdog,npc,10,0

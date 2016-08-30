@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 	public Interactions Interactions;
 	GameObject healthBar;
 	GameObject scoreText;
+	GameObject healthText;
 	GameObject prevBrick;
 	public GameObject prey;
 	GameObject energyBar;
@@ -38,20 +39,16 @@ public class Player : MonoBehaviour {
 	{
 		while(true)
 		{
-			// your code
-			if (energy >= 0)
-			{
-				energy = energy - energy_step;
-			}
-			Image img = energyBar.GetComponent<Image>();
-			img.fillAmount = img.fillAmount - .01f * energy_step;
 
-			if (energy > 0)
-			{
-				scoreText = GameObject.Find("ScoreText");
-				Text t = scoreText.GetComponent<Text>();
-				t.text = "" + score++;
+			if (!GameState.gameOver) {
+				Text t = scoreText.GetComponent<Text> ();
+				t.text = "";
+				t.text = "Score:  " + GameState.score++;
 			}
+
+			Text j = healthText.GetComponent<Text>();
+			j.text = "";
+			j.text = "Health:  " + GameState.playerHP;
 			//Debug.Log("fill amount " + img.fillAmount);
 			yield return new WaitForSeconds(1);
 		}
@@ -67,31 +64,13 @@ public class Player : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		scoreText = GameObject.Find("score");
+		healthText = GameObject.Find("judyhealth");
 //		var brickText = GameObject.Find("BrickText");
 		GameState.player = gameObject;
-		// repopulate the inventory
-//		for (int i = 0; i< InventoryNumber; i++) {
-//			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
-//
-//			inventorySlot.tag = InventoryArray[i].tag;
-//			inventorySlot.image.sprite = InventoryArray[i].image.sprite;//b.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
-//			if (i >= MAX_INVENTORY) {
-//				i = 0;
-//			}			
-//		}
-			
 
-		score = 0;
-		ogreIsAboutToDie = false;
+		StartCoroutine(yieldConnect());
 
-//		healthBar = GameObject.Find("EnergyLevel");
-//
-//		energyLevelText.text = "" + energy;
-//
-//		energyBar = GameObject.Find("EnergyBar");
-//		Image img = energyBar.GetComponent<Image>();
-//		img.fillAmount = 1f;
-//		StartCoroutine(yieldConnect());
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
