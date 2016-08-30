@@ -1,10 +1,10 @@
 name,owner,hp,player_damage
 phaser,player,5,30
 rifle,player,20,5
-grenade,player,20,50
+grenade,player,20,40
 crossbow,player,20,5
 sword,player,20,0
-spear,player,20,0
+spear,player,30,0
 sling,player,30,0
 club,player,20,1
 rock,player,100,0

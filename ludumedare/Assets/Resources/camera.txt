@@ -3,7 +3,7 @@ phaser,player,0,30
 rifle,player,0,5
 grenade,player,20,50
 crossbow,player,15,5
-sword,player,20,0
+sword,player,30,0
 spear,player,20,0
 sling,player,20,0
 club,player,20,1

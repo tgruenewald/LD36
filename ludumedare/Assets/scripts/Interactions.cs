@@ -191,7 +191,16 @@ public class Interactions : MonoBehaviour {
 				StartCoroutine (animate ("Great. I'll wait for them. What's the ETA on the helicopter?", "pc"));
 				return true;
 			case 4: 
-				StartCoroutine (animate ("Should be arriving ... around now.", "radio"));
+				StartCoroutine (animate ("Should be arriving ... soon. Ish.", "radio"));
+				return true;
+			case 5:
+				StartCoroutine (animate ("Did you just say \"soonish\"?", "pc"));
+				return true;
+			case 6:
+				StartCoroutine (animate ("I said soon. Over.", "radio"));
+				return true;
+			case 7:
+				StartCoroutine (animate ("Right ...", "pc"));
 				dialogueComplete = true;
 				textStage = 0;
 				return true;

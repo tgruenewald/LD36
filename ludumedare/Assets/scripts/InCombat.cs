@@ -78,6 +78,19 @@ public class InCombat : MonoBehaviour {
 		}
 		// calculate damage
 
+		if (hotdogUsed) {
+			hotdogUsed = false;
+			statusLine.text = "";
+			statusLine.text = "Yum.  Hotdogs increase health!";			
+			yield return new WaitForSeconds (1);				
+		} else {
+			if (weaponHP == 0) {
+				statusLine.text = "";
+				statusLine.text = "You missed";			
+				yield return new WaitForSeconds (1);	
+			}
+		}
+
 		if (GameState.npcHP <= 0) {
 			yield return new WaitForSeconds(1);
 			GameObject.Find ("NpcSpawn").GetComponent<SpriteRenderer> ().enabled = false;
@@ -104,24 +117,16 @@ public class InCombat : MonoBehaviour {
 			GameState.makeInventoryButtonsInteractable (true);			
 			//SceneManager.LoadScene (GameState.currentLevel);
 		}
-
-		// begin npc
-		if (hotdogUsed) {
-			hotdogUsed = false;
+		else
+		{
 			statusLine.text = "";
-			statusLine.text = "Yum.  Hotdogs increase health";			
-			yield return new WaitForSeconds (1);				
-		} else {
-			if (weaponHP == 0) {
-				statusLine.text = "";
-				statusLine.text = "You missed";			
-				yield return new WaitForSeconds (1);	
-			}
+			statusLine.text = "I will damage you";
+			GameState.playerHP = GameState.playerHP - npcWeaponHP;
+			Debug.Log ("enemy damaged player");
 		}
+		// begin npc
 
-		statusLine.text = "";
-		statusLine.text = "I will damage you";
-		GameState.playerHP = GameState.playerHP - npcWeaponHP;
+
 
 		// calculate damage
 		yield return new WaitForSeconds(1);
@@ -166,7 +171,7 @@ public class InCombat : MonoBehaviour {
 			if (currentWeapon == "hotdog") {
 				Debug.Log ("yum.  hotdog good");
 				hotdogUsed = true;
-				GameState.playerHP = GameState.playerHP + 30;
+				GameState.playerHP = GameState.playerHP + 40;
 				if (GameState.playerHP > 100) {
 					GameState.playerHP = 100;
 				}
