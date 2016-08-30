@@ -30,7 +30,7 @@ public class buttonstate : MonoBehaviour {
 		Debug.Log ("You selected the " + button.tag);
 		GameState.currentWeapon = button.tag;
 
-		if (button.tag == "hotdog") {
+		if (button.tag == "hotdog" || button.tag == "grenade") {
 			button.tag = "available";
 			button.image.sprite = Resources.Load<Sprite>("Sprites/inventorycell");
 
