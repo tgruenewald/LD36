@@ -13,6 +13,7 @@ public class InCombat : MonoBehaviour {
 	Text enemyHealth;
 	Text myHealth;
 	string droppedWeapon;
+	bool hotdogUsed = false;
 
 	public bool calculatingDamage = false;
 
@@ -105,10 +106,17 @@ public class InCombat : MonoBehaviour {
 		}
 
 		// begin npc
-		if (weaponHP == 0) {
+		if (hotdogUsed) {
+			hotdogUsed = false;
 			statusLine.text = "";
-			statusLine.text = "You missed";			
-			yield return new WaitForSeconds(1);	
+			statusLine.text = "Yum.  Hotdogs increase health";			
+			yield return new WaitForSeconds (1);				
+		} else {
+			if (weaponHP == 0) {
+				statusLine.text = "";
+				statusLine.text = "You missed";			
+				yield return new WaitForSeconds (1);	
+			}
 		}
 
 		statusLine.text = "";
@@ -157,6 +165,7 @@ public class InCombat : MonoBehaviour {
 			// check if hotdog
 			if (currentWeapon == "hotdog") {
 				Debug.Log ("yum.  hotdog good");
+				hotdogUsed = true;
 				GameState.playerHP = GameState.playerHP + 30;
 				if (GameState.playerHP > 100) {
 					GameState.playerHP = 100;
