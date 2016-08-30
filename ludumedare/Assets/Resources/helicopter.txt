@@ -8,4 +8,5 @@ spear,player,20,0
 sling,player,20,0
 club,player,20,1
 rock,player,100,0
+hotdog,player,0,0
 club,npc,15,0

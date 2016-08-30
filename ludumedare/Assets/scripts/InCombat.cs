@@ -154,6 +154,16 @@ public class InCombat : MonoBehaviour {
 			GameState.currentWeapon = null;
 			GameState.makeInventoryButtonsInteractable (false);
 
+			// check if hotdog
+			if (currentWeapon == "hotdog") {
+				Debug.Log ("yum.  hotdog good");
+				GameState.playerHP = GameState.playerHP + 30;
+				if (GameState.playerHP > 100) {
+					GameState.playerHP = 100;
+				}
+				myHealth.text = "";
+				myHealth.text = "Health: " + GameState.playerHP;
+			}
 				
 			// start the battle
 			Debug.Log ("Selected " + currentWeapon);
