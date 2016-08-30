@@ -31,7 +31,8 @@ public class Player : MonoBehaviour {
 		"grenade",
 		"sling",
 		"spear",
-		"hotdog"
+		"hotdog",
+		"crystal"
 	};
 
 	IEnumerator yieldConnect()
