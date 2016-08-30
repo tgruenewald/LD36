@@ -159,7 +159,7 @@ public class InCombat : MonoBehaviour {
 			GameState.makeInventoryButtonsInteractable (true);			
 		}
 
-
+		GameState.makeInventoryButtonsInteractable (true);			
 
 	}
 	// Update is called once per frame
@@ -169,7 +169,9 @@ public class InCombat : MonoBehaviour {
 			calculatingDamage = true;
 			currentWeapon = GameState.currentWeapon;
 			GameState.currentWeapon = null;
-			GameState.makeInventoryButtonsInteractable (false);
+			if (GameState.inBattle) {
+				GameState.makeInventoryButtonsInteractable (false);
+			}
 
 			// check if hotdog
 			if (currentWeapon == "hotdog") {
