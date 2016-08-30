@@ -17,7 +17,6 @@ public class Player : MonoBehaviour {
 	bool ogreIsAboutToDie = false;
 	int score = 0;
 	private bool facingRight = true;
-	public static int InventoryNumber = 0;
 	public static Button[] InventoryArray = new Button[MAX_INVENTORY];
 	static bool created = false;
 	private static Player playerInstance;
@@ -69,7 +68,6 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 //		var brickText = GameObject.Find("BrickText");
-		Debug.Log ("Player start:  inventory = " + InventoryNumber);
 		GameState.player = gameObject;
 		// repopulate the inventory
 //		for (int i = 0; i< InventoryNumber; i++) {
@@ -126,18 +124,24 @@ public class Player : MonoBehaviour {
          
 		if (weapons.Contains (tag)) {
 
-			// only add items to inventory
-			Button inventorySlot = GameObject.Find ("InventoryButton" + (InventoryNumber + 1)).GetComponent<UnityEngine.UI.Button> ();
-			inventorySlot.tag = tag;
-			Debug.Log ("tag getting assigned " + tag);
-			inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer> ().sprite;//Resources.Load<Sprite>("Sprites/sword");
-			InventoryArray [InventoryNumber] = inventorySlot;
-			InventoryNumber++;
-			if (InventoryNumber >= MAX_INVENTORY) {
-				InventoryNumber = 0;
+
+			for (int i = 1; i <= MAX_INVENTORY; i++) {
+				Button inventorySlot = GameObject.Find ("InventoryButton" + i).GetComponent<UnityEngine.UI.Button> ();
+			 
+				// now check if available
+				if (inventorySlot.tag == "available") {
+					inventorySlot.tag = tag;
+					Debug.Log ("tag getting assigned " + tag);
+					inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer> ().sprite;//Resources.Load<Sprite>("Sprites/sword");
+					InventoryArray [i-1] = inventorySlot;
+
+					DestroyObject (coll.gameObject);				
+					break;
+				}
 			}
 
-			DestroyObject (coll.gameObject);
+
+
 		}
 
 

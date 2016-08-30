@@ -14,7 +14,6 @@ public class cleanup : MonoBehaviour {
 				i = 0;
 			}			
 		}
-		Player.InventoryNumber = 0;
 
 	}
 	

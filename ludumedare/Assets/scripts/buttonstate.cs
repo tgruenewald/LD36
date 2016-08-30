@@ -33,7 +33,6 @@ public class buttonstate : MonoBehaviour {
 		if (button.tag == "hotdog") {
 			button.tag = "available";
 			button.image.sprite = Resources.Load<Sprite>("Sprites/inventorycell");
-			Player.InventoryNumber--;
 
 		}
 
