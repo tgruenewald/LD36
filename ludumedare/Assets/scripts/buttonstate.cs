@@ -24,7 +24,6 @@ public class buttonstate : MonoBehaviour {
     public void click()
     {
 		Debug.Log ("you clicked");
-		GameState.makeInventoryButtonsInteractable (false);
         //GetComponent<UnityEngine.UI.Button>().image.sprite = Resources.Load<Sprite>("Sprites/sword");
 		UnityEngine.UI.Button button = GetComponent<UnityEngine.UI.Button> ();
 		Debug.Log ("You selected the " + button.tag);

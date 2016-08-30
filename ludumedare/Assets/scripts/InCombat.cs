@@ -19,6 +19,7 @@ public class InCombat : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		GameState.currentWeapon = null;
 		Debug.Log ("Starting InCombat: " + GameState.weaponsFileName);
 		weaponsData = CSVReader.Read (GameState.weaponsFileName);
 
