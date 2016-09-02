@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
 	public int energy = 20;
 	public int energy_step = 5;
 	public Interactions Interactions;
+
+	private bool tutorialPlayed = false;
 	GameObject healthBar;
 	GameObject scoreText;
 	GameObject healthText;
@@ -119,7 +121,12 @@ public class Player : MonoBehaviour {
 				}
 			}
 
-
+			if (tag == "crossbow" && !tutorialPlayed)
+			{
+				Interactions.showText ("tutorial");
+				tutorialPlayed = true;
+			}
+				
 
 		}
 

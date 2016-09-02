@@ -70,6 +70,12 @@ public class Interactions : MonoBehaviour {
 
 		if(textManager (tag)==true){
 			talkingHead.enabled = true;
+			storytext.enabled = false;
+		}
+		else
+		{
+			talkingHead.enabled = false;
+			textWithImage.enabled = false;
 		}
 		textBorder.enabled = true;
 		textbg.enabled = true;
@@ -254,6 +260,36 @@ public class Interactions : MonoBehaviour {
 			default: 
 				return true;
 			}//radio11
+
+		case "tutorial":
+			switch (textStage)
+			{
+			case 1:
+				StartCoroutine (animate ("Who left my trusty crossbow lying on the ground?", "pc"));
+				return true;
+			case 2:
+				StartCoroutine (animate ("Wait, I did.", "pc"));
+				return true;
+			case 3:
+				StartCoroutine (animate ("I'll stash this in my pack in case I need it.", "pc"));
+				return true;
+			case 4:
+				StartCoroutine (animate ("The crossbow has been added to your backpack on the right. To use an item during combat, click on the item.",""));
+				return false;
+			case 5:
+				StartCoroutine (animate ("To use an item outside of combat, also click on the item. After you use item out of combat, it's gone forever.", ""));
+				return false;
+			case 6:
+				StartCoroutine (animate ("This is a great way to clear up space in your pack.", ""));
+				return false;
+			case 7:
+				StartCoroutine (animate ("It's also a great way to lose weight!", "pc"));
+				dialogueComplete = true;
+				textStage = 0;
+				return true;
+			default: 
+				return true;
+			}
 
 		default:
 			StartCoroutine (animate ("textManager did not find string", ""));
