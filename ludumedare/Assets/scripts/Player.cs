@@ -10,7 +10,10 @@ public class Player : MonoBehaviour {
 	public int energy_step = 5;
 	public Interactions Interactions;
 
+
+	public bool hasRadio = false;
 	private bool tutorialPlayed = false;
+
 	GameObject healthBar;
 	GameObject scoreText;
 	GameObject healthText;
@@ -42,10 +45,10 @@ public class Player : MonoBehaviour {
 		while(true)
 		{
 
-			if (!GameState.gameOver) {
+			if (!GameState.gameOver && !Interactions.inDialogue) {
 				Text t = scoreText.GetComponent<Text> ();
 				t.text = "";
-				t.text = "Score:  " + GameState.score++;
+				t.text = "Time:  " + GameState.score++;
 			}
 
 			Text j = healthText.GetComponent<Text>();
@@ -102,7 +105,10 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-         
+		if (tag == "radio3")
+		{
+			hasRadio = true;
+		}
 		if (weapons.Contains (tag)) {
 
 

@@ -72,7 +72,7 @@ public class InCombat : MonoBehaviour {
 
 		if (playerDamageFromWeapon > 0) {
 			statusLine.text = "";
-			statusLine.text = "Ouch! The " + currentWeapon + " malfunctions and damages me";
+			statusLine.text = "Ouch! The " + currentWeapon + " malfunctions and damages you.";
 			yield return new WaitForSeconds(1);			
 			GameState.playerHP = GameState.playerHP - playerDamageFromWeapon;
 			myHealth.text = "";
@@ -88,7 +88,7 @@ public class InCombat : MonoBehaviour {
 		} else {
 			if (weaponHP == 0) {
 				statusLine.text = "";
-				statusLine.text = "You missed";			
+				statusLine.text = "You missed.";			
 				yield return new WaitForSeconds (1);	
 			}
 		}
@@ -122,7 +122,7 @@ public class InCombat : MonoBehaviour {
 		else
 		{
 			statusLine.text = "";
-			statusLine.text = "I will damage you";
+			statusLine.text = "The enemy damages you.";
 			GameState.playerHP = GameState.playerHP - npcWeaponHP;
 			Debug.Log ("enemy damaged player");
 		}
@@ -154,7 +154,7 @@ public class InCombat : MonoBehaviour {
 		} else {
 			// if you made it this far, you lived to fight again
 			statusLine.text = "";
-			statusLine.text = "Battle continues";
+			statusLine.text = "Battle continues.";
 			calculatingDamage = false;
 			GameState.makeInventoryButtonsInteractable (true);			
 		}
