@@ -4,20 +4,25 @@ using UnityEngine.UI;
 using System.Linq;
 public class Player : MonoBehaviour {
 	public static int max_number_of_walls = 15;
-	public const int MAX_INVENTORY = 14;
+	public const int MAX_INVENTORY = 7;  // real max of 14
 	public float speed = 20f;
 	public int energy = 20;
 	public int energy_step = 5;
 	public Interactions Interactions;
+
+
+	public bool hasRadio = false;
+	private bool tutorialPlayed = false;
+
 	GameObject healthBar;
 	GameObject scoreText;
+	GameObject healthText;
 	GameObject prevBrick;
 	public GameObject prey;
 	GameObject energyBar;
 	bool ogreIsAboutToDie = false;
 	int score = 0;
 	private bool facingRight = true;
-	public static int InventoryNumber = 0;
 	public static Button[] InventoryArray = new Button[MAX_INVENTORY];
 	static bool created = false;
 	private static Player playerInstance;
@@ -26,31 +31,29 @@ public class Player : MonoBehaviour {
 		"sword",
 		"club",
 		"rock",
-		"gun",
+		"rifle",
 		"crossbow",
 		"grenade",
 		"sling",
-		"spear"
+		"spear",
+		"hotdog",
+		"crystal"
 	};
 
 	IEnumerator yieldConnect()
 	{
 		while(true)
 		{
-			// your code
-			if (energy >= 0)
-			{
-				energy = energy - energy_step;
-			}
-			Image img = energyBar.GetComponent<Image>();
-			img.fillAmount = img.fillAmount - .01f * energy_step;
 
-			if (energy > 0)
-			{
-				scoreText = GameObject.Find("ScoreText");
-				Text t = scoreText.GetComponent<Text>();
-				t.text = "" + score++;
+			if (!GameState.gameOver && !Interactions.inDialogue) {
+				Text t = scoreText.GetComponent<Text> ();
+				t.text = "";
+				t.text = "Time:  " + GameState.score++;
 			}
+
+			Text j = healthText.GetComponent<Text>();
+			j.text = "";
+			j.text = "Health:  " + GameState.playerHP;
 			//Debug.Log("fill amount " + img.fillAmount);
 			yield return new WaitForSeconds(1);
 		}
@@ -66,32 +69,13 @@ public class Player : MonoBehaviour {
 	}
 	// Use this for initialization
 	void Start () {
+		scoreText = GameObject.Find("score");
+		healthText = GameObject.Find("judyhealth");
 //		var brickText = GameObject.Find("BrickText");
-		Debug.Log ("Player start:  inventory = " + InventoryNumber);
 		GameState.player = gameObject;
-		// repopulate the inventory
-//		for (int i = 0; i< InventoryNumber; i++) {
-//			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
-//
-//			inventorySlot.tag = InventoryArray[i].tag;
-//			inventorySlot.image.sprite = InventoryArray[i].image.sprite;//b.GetComponent<SpriteRenderer>().sprite;//Resources.Load<Sprite>("Sprites/sword");
-//			if (i >= MAX_INVENTORY) {
-//				i = 0;
-//			}			
-//		}
-			
 
-		score = 0;
-		ogreIsAboutToDie = false;
+		StartCoroutine(yieldConnect());
 
-//		healthBar = GameObject.Find("EnergyLevel");
-//
-//		energyLevelText.text = "" + energy;
-//
-//		energyBar = GameObject.Find("EnergyBar");
-//		Image img = energyBar.GetComponent<Image>();
-//		img.fillAmount = 1f;
-//		StartCoroutine(yieldConnect());
 	}
 	void OnCollisionEnter2D(Collision2D col)
 	{
@@ -121,21 +105,35 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-         
+		if (tag == "radio3")
+		{
+			hasRadio = true;
+		}
 		if (weapons.Contains (tag)) {
 
-			// only add items to inventory
-			Button inventorySlot = GameObject.Find ("InventoryButton" + (InventoryNumber + 1)).GetComponent<UnityEngine.UI.Button> ();
-			inventorySlot.tag = tag;
-			Debug.Log ("tag getting assigned " + tag);
-			inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer> ().sprite;//Resources.Load<Sprite>("Sprites/sword");
-			InventoryArray [InventoryNumber] = inventorySlot;
-			InventoryNumber++;
-			if (InventoryNumber >= MAX_INVENTORY) {
-				InventoryNumber = 0;
+
+			for (int i = 1; i <= MAX_INVENTORY; i++) {
+				Button inventorySlot = GameObject.Find ("InventoryButton" + i).GetComponent<UnityEngine.UI.Button> ();
+			 
+				// now check if available
+				if (inventorySlot.tag == "available") {
+					inventorySlot.tag = tag;
+					Debug.Log ("tag getting assigned " + tag);
+					inventorySlot.image.sprite = coll.gameObject.GetComponent<SpriteRenderer> ().sprite;//Resources.Load<Sprite>("Sprites/sword");
+					InventoryArray [i-1] = inventorySlot;
+
+					DestroyObject (coll.gameObject);				
+					break;
+				}
 			}
 
-			DestroyObject (coll.gameObject);
+			if (tag == "crossbow" && !tutorialPlayed)
+			{
+				Interactions.showText ("tutorial");
+				tutorialPlayed = true;
+			}
+				
+
 		}
 
 

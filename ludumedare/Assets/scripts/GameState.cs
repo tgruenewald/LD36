@@ -9,15 +9,20 @@ public static class GameState
 	public static int playerHP = 100;
     public static GameObject introMusic = null;
     public static string currentLevel = "Scene1";
+	public static string currentBattle = "";
 	public static string weaponsFileName = null;
 	public static string currentWeapon = null;
 	public static string npcImageName = null;
+	public static string enemyName = null;
+	public static bool inBattle = false;
+	public static int score = 0;
+	public static bool gameOver = false;
 	public static int npcHP = 0;
 
 	private static GameObject pc = null;
 
 	public static void makeInventoryButtonsInteractable(bool enable) {
-		for (int i = 0; i< Player.InventoryNumber; i++) {
+		for (int i = 0; i< Player.MAX_INVENTORY; i++) {
 			Button inventorySlot = GameObject.Find ("InventoryButton" + (i+1)).GetComponent<UnityEngine.UI.Button> ();
 			inventorySlot.interactable = enable;
 		}		

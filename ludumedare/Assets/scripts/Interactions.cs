@@ -70,6 +70,12 @@ public class Interactions : MonoBehaviour {
 
 		if(textManager (tag)==true){
 			talkingHead.enabled = true;
+			storytext.enabled = false;
+		}
+		else
+		{
+			talkingHead.enabled = false;
+			textWithImage.enabled = false;
 		}
 		textBorder.enabled = true;
 		textbg.enabled = true;
@@ -152,7 +158,7 @@ public class Interactions : MonoBehaviour {
 					return true;
 
 				case 6:
-				StartCoroutine (animate ("Whatever it is, we've triangulated the source of the problem at the Nature and Technology Museum. Over.", "radio"));
+				StartCoroutine (animate ("Whatever it is, we've triangulated the source of the problem at the National Aquarium. Over.", "radio"));
 					return true;
 
 				case 7:
@@ -191,7 +197,16 @@ public class Interactions : MonoBehaviour {
 				StartCoroutine (animate ("Great. I'll wait for them. What's the ETA on the helicopter?", "pc"));
 				return true;
 			case 4: 
-				StartCoroutine (animate ("Should be arriving ... around now.", "radio"));
+				StartCoroutine (animate ("Should be arriving ... soon. Ish.", "radio"));
+				return true;
+			case 5:
+				StartCoroutine (animate ("Did you just say \"soonish\"?", "pc"));
+				return true;
+			case 6:
+				StartCoroutine (animate ("I said soon. Over.", "radio"));
+				return true;
+			case 7:
+				StartCoroutine (animate ("Right ...", "pc"));
 				dialogueComplete = true;
 				textStage = 0;
 				return true;
@@ -208,10 +223,10 @@ public class Interactions : MonoBehaviour {
 				StartCoroutine (animate ("And?", "radio"));
 				return true;
 			case 3:
-				StartCoroutine (animate ("How do I get to the museum?", "pc"));
+				StartCoroutine (animate ("How do I get to the aquarium?", "pc"));
 				return true;
 			case 4:
-				StartCoroutine (animate ("You've never been to the Nature and Technology Museum?", "radio"));
+				StartCoroutine (animate ("You've never been?", "radio"));
 				return true;
 			case 5:
 				StartCoroutine (animate ("Sure. Once. On a field trip.", "pc"));
@@ -245,6 +260,36 @@ public class Interactions : MonoBehaviour {
 			default: 
 				return true;
 			}//radio11
+
+		case "tutorial":
+			switch (textStage)
+			{
+			case 1:
+				StartCoroutine (animate ("Who left my trusty crossbow lying on the ground?", "pc"));
+				return true;
+			case 2:
+				StartCoroutine (animate ("Wait, I did.", "pc"));
+				return true;
+			case 3:
+				StartCoroutine (animate ("I'll stash this in my pack in case I need it.", "pc"));
+				return true;
+			case 4:
+				StartCoroutine (animate ("The crossbow has been added to your backpack on the right. To use an item during combat, click on the item.",""));
+				return false;
+			case 5:
+				StartCoroutine (animate ("To use an item outside of combat, also click on the item. After you use item out of combat, it's gone forever.", ""));
+				return false;
+			case 6:
+				StartCoroutine (animate ("This is a great way to clear up space in your pack.", ""));
+				return false;
+			case 7:
+				StartCoroutine (animate ("It's also a great way to lose weight!", "pc"));
+				dialogueComplete = true;
+				textStage = 0;
+				return true;
+			default: 
+				return true;
+			}
 
 		default:
 			StartCoroutine (animate ("textManager did not find string", ""));

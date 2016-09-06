@@ -8,7 +8,9 @@ public class StartGame : MonoBehaviour {
 	
 	}
 	public void click() {
-		Debug.Log ("start the game");
+		GameState.playerHP = 100;
+		GameState.score = 0;
+		GameState.gameOver = false;
 		SceneManager.LoadScene ("office");
 	}
 	// Update is called once per frame

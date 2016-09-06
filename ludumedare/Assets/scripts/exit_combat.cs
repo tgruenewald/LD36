@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class exit_combat : MonoBehaviour {
 
 	public string nextScene;
+	public string currentBattle;
 	// Use this for initialization
 	void Start () {
 	
@@ -23,6 +24,7 @@ public class exit_combat : MonoBehaviour {
 		//		audios[0].clip = clip;
 		//		audios[0].Play();
 		//GameState.currentLevel = "jungle";
+		GameObject.Find (currentBattle).GetComponent<SpriteRenderer> ().enabled = false;
 		SceneManager.LoadScene (nextScene);
 
 
